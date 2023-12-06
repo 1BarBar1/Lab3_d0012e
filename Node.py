@@ -8,7 +8,7 @@ class Node:
         self.size = size
         self.left_child = None
         self.right_child = None
-        self.c = None
+        self.c = 0.5
         
     def add_node(self,size):
         '''
@@ -17,16 +17,18 @@ class Node:
 
         size int: the size off the new node
         '''
-        if size < self.size:
+        if size < self.size and self.c*size < self.size:
             if self.left_child is not None:
                 self.left_child.add_node(size)
             else:
                 self.left_child = Node(size)
-        elif size >= self.size:
+        elif size >= self.size and self.c*size < self.size:
             if self.right_child is not None:
                 self.right_child.add_node(size)
             else:
                 self.right_child = Node(size)
+        elif self.c*size > self.size:
+            
 
     def give_nodesize(self):
         return self.size
